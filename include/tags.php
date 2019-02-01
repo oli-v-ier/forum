@@ -96,6 +96,10 @@ class tagManager
         $conseils = array("[Récit + liste]");
 		
 		$pretmateriel = array( "[Emprunt]", "[Prêt successif]", "[Prêt unique]" );
+		
+		$sortiesasso = array( "[Proposition]", "[Validé]", "[Récit]" );
+		
+		$tags_developpement = array( "[BUG]", "[RESOLU]", "[Fonctionnalité]", "[Mise à jour]" );		
         
         // main tags list: contains association between forum ids and various tag lists
         $this->tags = array( 7 => $conseils,
@@ -103,9 +107,11 @@ class tagManager
 							 5 => $tags_basiques,
 							 20 => $tags_basiques,
 							 30 => $tags_basiques,
+							 33 => $tags_developpement,
+							 63 => $sortiesasso,
 							 55 => array($pretmateriel, $tags_basiques),
                              11 => array($achat_vente, $tags_basiques));
-        
+       
         // showing lists
         $this->showTagsList();
     }
