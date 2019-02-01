@@ -5,7 +5,7 @@
 						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=start" class="<?php echo $GLOBALS['menuG_start']; ?>" title="Accueil de Randonner léger">Accueil du site</a></li>
 
 		<?php
-		# Si visiteur NON identifié, j'affiche le formulaire d'indentification dans le menu gauche
+		# Si visiteur NON identifié, j'affiche le formulaire d'identification dans le menu gauche
 		if ($pun_user['group_id']==3 || $conf['group_id']==3 )
 		{
 		?>
@@ -13,9 +13,11 @@
 						<input id="menug-identification" type="checkbox" name="toggle" />
 						<label for="menug-identification"></label>
 						<div class="content-togglebox">
-							<form id="login_menuG" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" method="post">
+							<form id="login_menuG" method="post" action="<?php echo path_to_forum . 'login.php?action=in'; ?>" onsubmit="return process_form(this)">
 								<input type="hidden" name="form_sent" value="1" />
-								<input type="hidden" name="redirect_url" value="<?php echo 'http://' .$_SERVER['HTTP_HOST'] . htmlentities($_SERVER['REQUEST_URI']); ?>" />
+								<input type="hidden" name="redirect_url" value="<?php echo 'https://' .$_SERVER['HTTP_HOST'] . htmlentities($_SERVER['REQUEST_URI']); ?>" />
+								<input type="hidden" name="csrf_token" value="<?php echo pun_csrf_token() ?>" />
+
 								<input placeholder="Nom d'utilisateur" class="fastlogin" id="username" type="text" name="req_username" size="10" />
 								<input placeholder="Mot de passe" class="fastlogin" id="password" type="password" name="req_password" size="10" />
 									<div class="save-pass">
@@ -56,17 +58,14 @@
 						</div>
 						</li>
 
-						<li class="display"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl" class="<?php echo $GLOBALS['menuG_association']; ?>" title="L'association Randonner léger">L'Association</a>
+						<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:association_randonner_leger" class="<?php echo $GLOBALS['menuG_association']; ?>" title="L'association Randonner léger">L'Association</a>
 						<input id="menug-wiki-asso" type="checkbox" <?php if ($GLOBALS['menuG_association']=="active") { echo "checked='checked'"; } ?> name="toggle" />
 						<label for="menug-wiki-asso"></label>
 						<div class="content-togglebox">
 							<ul class="sub-menu">
-								<li class="highlight"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:adherer" title="Adhérer à l'association">Adhérer à l'association</a></li>
-								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:historique" title="Historique et fonctionnement">Historique et fonctionnement</a></li>
-								<li class="highlight"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:projets:s-investir" title="S'investir dans l'association">S'investir</a></li>
-								<li class="highlight"><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:projets" title="Les projets en cours de l'association">Projets en cours</a>
-								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:historique:cdb" title="Camps de base">Camps de base</a></li>
-								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:projets:produits-promotionnels" title="Produits promotionnels">Produits promotionnels</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:adherer" title="Adhérer à l'association">Adhérer à l'association</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:comites_regionaux" title="Comités régionaux">Comités régionaux</a></li>
+								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=association_rl:camps" title="Camps">Camps</a></li>
 							</ul>
 						</div>
 						</li>
@@ -79,10 +78,7 @@
 								<?php echo $forum_discussions_suivies ; ?>
 								<?php echo $forum_nouveaux_messages ; ?>
 								<li><a href="<?php echo path_to_forum; ?>search.php?action=show_24h" title="Messages récents">Messages récents</a></li>
-								<?php echo $forum_sans_reponses ; ?>
-								<li><a href="<?php echo path_to_forum; ?>search.php" title="Recherche">Recherche</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=les_sujets_cles" title="Les sujets clés">Les sujets clés</a></li>
-								<?php echo $forum_profil ; ?>
 							</ul>
 						</div>
 						</li>
@@ -98,7 +94,6 @@
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=sommaire_recits_par_massifs" title="Sommaire des récits classés par activités, massifs, pays ou régions">Récits</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=sommaire_fiches_conseil" title="Sommaire des fiches conseils">Conseils</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=sommaire_bricolage" title="Sommaire Bricolage">Bricolage</a></li>
-								<li><a href="<?php echo path_to_wiki; ?>poids/index.php" title="Mesures du poids du matériel de randonnée">Poids</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=sommaire_selection_materiel" title="Sommaire sélection materiel">Sélection matériel</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=lexique" title="Lexique de la randonnée légère">Lexique</a></li>
 								<li><a href="<?php echo path_to_wiki; ?>doku.php?id=sommaire_culture" title="Sommaire culture">Culture/Ressources</a></li>
